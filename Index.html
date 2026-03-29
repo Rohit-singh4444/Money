@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AffilAuto v3</title>
+<title>AffilAuto v3 - FREE Gemini</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -15,7 +15,7 @@
   --accent: #ff5f1f;
   --gold: #ffb800;
   --green: #00e676;
-  --blue: #2979ff;
+  --blue: #4285f4;
   --tg: #0088cc;
   --pin: #e60023;
   --text: #eeeef5;
@@ -27,19 +27,16 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:100px;overflow-x:hidden}
 
-/* NOISE OVERLAY */
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.5}
 
-/* HEADER */
 header{position:sticky;top:0;z-index:100;background:rgba(7,7,15,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;background:linear-gradient(120deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.5px}
-.logo sub{font-size:0.55rem;background:rgba(255,184,0,0.15);border:1px solid rgba(255,184,0,0.3);color:var(--gold);-webkit-text-fill-color:var(--gold);border-radius:5px;padding:1px 5px;margin-left:5px;vertical-align:middle;font-weight:600;font-family:'Outfit',sans-serif;letter-spacing:0}
+.logo sub{font-size:0.55rem;background:rgba(255,184,0,0.15);border:1px solid rgba(255,184,0,0.3);color:var(--gold);-webkit-text-fill-color:var(--gold);border-radius:5px;padding:1px 5px;margin-left:5px;vertical-align:middle;font-weight:600}
 .cfg-btn{font-size:0.72rem;padding:6px 12px;border-radius:20px;border:1px solid var(--border2);color:var(--muted);cursor:pointer;background:var(--surface);transition:all .2s}
 .cfg-btn.on{border-color:var(--green);color:var(--green)}
 
 main{max-width:470px;margin:0 auto;padding:0 14px;position:relative;z-index:1}
 
-/* SETUP DRAWER */
 .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:300;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .3s}
 .drawer-overlay.open{opacity:1;pointer-events:all}
 .drawer{background:#0f0f1e;border-radius:22px 22px 0 0;padding:26px 18px 44px;width:100%;border-top:1px solid var(--border2);transform:translateY(100%);transition:transform .35s cubic-bezier(.22,.68,0,1.2)}
@@ -50,61 +47,52 @@ main{max-width:470px;margin:0 auto;padding:0 14px;position:relative;z-index:1}
 .field-label{font-size:0.73rem;color:var(--muted);margin-bottom:5px;display:block}
 .field-hint{font-size:0.69rem;color:var(--muted2);line-height:1.55;margin:-8px 0 12px;padding:7px 10px;background:rgba(255,255,255,0.025);border-radius:8px}
 .field-hint b{color:var(--gold)}
-input[type=text]{width:100%;background:#09090f;border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.85rem;padding:11px 13px;outline:none;transition:border .2s;margin-bottom:11px}
-input[type=text]:focus{border-color:var(--accent)}
-input[type=text]::placeholder{color:var(--muted2)}
-.save-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--tg),#0055bb);border:none;border-radius:11px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;margin-top:4px}
+input[type=text],input[type=password]{width:100%;background:#09090f;border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.85rem;padding:11px 13px;outline:none;margin-bottom:11px}
+input[type=text]:focus,input[type=password]:focus{border-color:var(--accent)}
+.save-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--blue),#1a5dd4);border:none;border-radius:11px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;margin-top:4px}
 
-/* UPLOAD ZONE */
-.upload-zone{margin-top:18px;border:2px dashed var(--border2);border-radius:var(--r);padding:28px 20px;text-align:center;cursor:pointer;transition:all .25s;position:relative;background:var(--surface);overflow:hidden}
+.upload-zone{margin-top:18px;border:2px dashed var(--border2);border-radius:var(--r);padding:28px 20px;text-align:center;cursor:pointer;transition:all .25s;position:relative;background:var(--surface)}
 .upload-zone:hover,.upload-zone.drag{border-color:var(--accent);background:rgba(255,95,31,0.04)}
-.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
 .upload-icon{font-size:2.6rem;margin-bottom:8px;display:block}
 .upload-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:5px}
 .upload-sub{font-size:0.75rem;color:var(--muted);line-height:1.5}
 .upload-sub b{color:var(--gold)}
 
-/* SCREENSHOT PREVIEW */
-.ss-preview{margin-top:14px;display:none;border-radius:var(--r);overflow:hidden;position:relative;border:1px solid var(--border2)}
+.ss-preview{margin-top:14px;display:none;border-radius:var(--r);overflow:hidden;border:1px solid var(--border2)}
 .ss-preview.show{display:block}
-.ss-preview img{width:100%;display:block;max-height:280px;object-fit:cover;object-position:top}
+.ss-preview img{width:100%;display:block;max-height:280px;object-fit:cover}
 .ss-preview-bar{display:flex;align-items:center;justify-content:space-between;padding:9px 13px;background:var(--card);border-top:1px solid var(--border)}
 .ss-preview-label{font-size:0.73rem;color:var(--green);font-weight:600}
-.ss-remove{font-size:0.7rem;color:var(--muted);cursor:pointer;padding:3px 8px;border:1px solid var(--border2);border-radius:6px;background:transparent}
+.ss-remove{font-size:0.7rem;color:var(--muted);cursor:pointer;padding:3px 8px;border:1px solid var(--border2);border-radius:6px}
 
-/* LINK INPUT */
 .link-row{margin-top:12px;position:relative}
-.link-row input{padding-right:82px;margin-bottom:0;background:var(--card);border-color:var(--border)}
-.link-paste-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:var(--accent);border:none;color:#fff;font-size:0.68rem;font-weight:700;padding:5px 10px;border-radius:7px;cursor:pointer;font-family:'Outfit',sans-serif}
+.link-row input{padding-right:82px;margin-bottom:0;background:var(--card)}
+.link-paste-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:var(--accent);border:none;color:#fff;font-size:0.68rem;font-weight:700;padding:5px 10px;border-radius:7px;cursor:pointer}
 
-/* CONTROLS CARD */
 .ctrl-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-top:14px}
 .sect{font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin:14px 0 7px}
 .sect:first-child{margin-top:0}
 
-/* CHIPS */
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2px}
-.chip{padding:6px 11px;border:1px solid var(--border2);border-radius:20px;font-size:0.72rem;cursor:pointer;background:transparent;color:var(--muted);transition:all .18s;user-select:none}
+.chip{padding:6px 11px;border:1px solid var(--border2);border-radius:20px;font-size:0.72rem;cursor:pointer;background:transparent;color:var(--muted);transition:all .18s}
 .chip.on{border-color:var(--accent);background:rgba(255,95,31,0.1);color:var(--accent);font-weight:600}
 
-/* PLATFORMS */
 .plats{display:flex;gap:8px;margin-bottom:2px}
 .plat{flex:1;padding:10px 6px;border-radius:11px;border:2px solid var(--border2);background:transparent;cursor:pointer;text-align:center;font-size:0.7rem;color:var(--muted);transition:all .2s}
 .plat .ico{font-size:1.4rem;display:block;margin-bottom:3px}
 .plat.tg{border-color:var(--tg);background:rgba(0,136,204,0.08);color:#60c8ff}
 .plat.pin{border-color:var(--pin);background:rgba(230,0,35,0.08);color:#ff6680}
 
-/* GENERATE BUTTON */
-.gen-btn{width:100%;margin-top:16px;padding:17px;background:linear-gradient(135deg,var(--accent),#ff8c00);border:none;border-radius:13px;color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:0.3px;box-shadow:0 4px 24px rgba(255,95,31,0.25)}
-.gen-btn:disabled{opacity:0.45;cursor:not-allowed;box-shadow:none}
+.gen-btn{width:100%;margin-top:16px;padding:17px;background:linear-gradient(135deg,var(--accent),#ff8c00);border:none;border-radius:13px;color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 24px rgba(255,95,31,0.25)}
+.gen-btn:disabled{opacity:0.45;cursor:not-allowed}
 .gen-btn:not(:disabled):active{transform:scale(0.98)}
 
-/* PIPELINE */
 .pipeline{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-top:16px;display:none}
 .pipeline.show{display:block}
 .pipe-step{display:flex;align-items:flex-start;gap:11px;padding:10px 0;border-bottom:1px solid var(--border)}
 .pipe-step:last-child{border-bottom:none}
-.pipe-ico{font-size:1.3rem;flex-shrink:0;margin-top:1px}
+.pipe-ico{font-size:1.3rem;flex-shrink:0}
 .pipe-info{flex:1}
 .pipe-label{font-size:0.82rem;font-weight:600;margin-bottom:2px}
 .pipe-detail{font-size:0.71rem;color:var(--muted);line-height:1.4}
@@ -114,10 +102,7 @@ input[type=text]::placeholder{color:var(--muted2)}
 .pb-ok{background:rgba(0,230,118,0.12);color:var(--green)}
 .pb-err{background:rgba(255,68,68,0.12);color:var(--error)}
 
-/* RESULT CARDS */
 .result-area{margin-top:14px}
-
-/* GENERATED IMAGE */
 .gen-img-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;display:none;margin-bottom:12px}
 .gen-img-card.show{display:block}
 .gen-img-header{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
@@ -127,34 +112,27 @@ input[type=text]::placeholder{color:var(--muted2)}
 .gen-img-wrap img{width:100%;display:block;max-height:300px;object-fit:contain}
 .gen-img-loader{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;font-size:0.75rem;color:var(--muted)}
 
-/* CAPTION */
 .caption-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;display:none;margin-bottom:12px}
 .caption-card.show{display:block}
 .caption-header{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
-.caption-title{font-size:0.75rem;font-weight:600;color:var(--text)}
+.caption-title{font-size:0.75rem;font-weight:600}
 .caption-copy{font-size:0.68rem;padding:4px 10px;border:1px solid var(--border2);border-radius:7px;background:transparent;color:var(--muted);cursor:pointer}
 .caption-body{padding:13px 14px;font-size:0.82rem;line-height:1.7;color:#cccce0;white-space:pre-wrap}
 
-/* PINTEREST */
 .pin-card{background:rgba(230,0,35,0.04);border:1px solid rgba(230,0,35,0.2);border-radius:var(--r);padding:14px;display:none;margin-bottom:12px}
 .pin-card.show{display:block}
 .pin-label{font-size:0.68rem;color:var(--pin);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
 .pin-field{background:rgba(0,0,0,0.3);border:1px solid rgba(230,0,35,0.15);border-radius:9px;padding:10px 12px;font-size:0.78rem;color:#ccc;line-height:1.6;margin-bottom:8px;white-space:pre-wrap}
 .pin-open{width:100%;padding:11px;background:var(--pin);border:none;border-radius:9px;color:#fff;font-weight:700;font-size:0.82rem;cursor:pointer}
 
-/* AGAIN BTN */
 .again-btn{width:100%;padding:12px;border:1px dashed var(--border2);background:transparent;border-radius:11px;color:var(--muted);font-size:0.82rem;cursor:pointer;margin-top:4px}
 
-/* TOAST */
 .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--green);color:#000;padding:10px 22px;border-radius:22px;font-size:0.8rem;font-weight:700;z-index:999;transition:transform .3s;white-space:nowrap}
 .toast.err{background:var(--error);color:#fff}
 .toast.show{transform:translateX(-50%) translateY(0)}
 
-/* SPINNER */
-.spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,0.25);border-top-color:#fff;border-radius:50%;animation:rot .65s linear infinite;vertical-align:middle}
+.spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,0.25);border-top-color:#fff;border-radius:50%;animation:rot .65s linear infinite}
 @keyframes rot{to{transform:rotate(360deg)}}
-
-/* PULSE ANIMATION for image loading */
 @keyframes pulse{0%,100%{opacity:0.4}50%{opacity:0.9}}
 .pulsing{animation:pulse 1.5s ease-in-out infinite}
 </style>
@@ -166,38 +144,33 @@ input[type=text]::placeholder{color:var(--muted2)}
   <div class="cfg-btn" id="cfgBtn" onclick="openDrawer()">⚙️ Setup</div>
 </header>
 
-<!-- SETUP DRAWER -->
 <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawerOutside(event)">
   <div class="drawer">
     <div class="drawer-handle"></div>
-    <div class="drawer-title">🔐 Bot Setup</div>
-    <div class="drawer-sub">Sirf ek baar karo — phir sab auto</div>
-    <span class="field-label">Telegram Bot Token</span>
+    <div class="drawer-title">🔐 Bot Setup (FREE)</div>
+    <div class="drawer-sub">Gemini API key + Telegram setup — sirf ek baar</div>
+    <span class="field-label">🤖 Google Gemini API Key</span>
+    <input type="password" id="fGeminiKey" placeholder="AIzaSy..." />
+    <div class="field-hint"><b>📌 FREE:</b> <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--gold)">Google AI Studio</a> → Create API key → Copy karo → ₹300 free credit</div>
+    <span class="field-label">✈️ Telegram Bot Token</span>
     <input type="text" id="fBotToken" placeholder="1234567890:ABCdef..." />
-    <div class="field-hint"><b>Kaise milega?</b> Telegram → <b>@BotFather</b> → /newbot → token copy karo</div>
-    <span class="field-label">Channel ID / Username</span>
+    <div class="field-hint"><b>Kaise?</b> Telegram → <b>@BotFather</b> → /newbot → token copy</div>
+    <span class="field-label">📢 Channel ID / Username</span>
     <input type="text" id="fChannelId" placeholder="@yourchannel ya -1001234567890" />
-    <span class="field-label">Amazon Affiliate Tag</span>
+    <span class="field-label">🏷️ Amazon Affiliate Tag</span>
     <input type="text" id="fAffTag" placeholder="yourname-21" />
-    <div class="field-hint">Amazon Associates → Account → Store ID — links mein auto-add hoga</div>
     <button class="save-btn" onclick="saveSetup()">✅ Save & Connect</button>
   </div>
 </div>
 
 <main>
-
-  <!-- UPLOAD ZONE -->
   <div class="upload-zone" id="uploadZone">
     <input type="file" id="fileInput" accept="image/*" onchange="onFileSelect(event)" />
     <span class="upload-icon">📸</span>
     <div class="upload-title">Product Screenshot Upload Karo</div>
-    <div class="upload-sub">
-      Amazon product page ka screenshot lo<br>
-      <b>AI automatically</b> product naam, price, features padh lega
-    </div>
+    <div class="upload-sub">Amazon product page ka screenshot lo<br><b>Gemini AI</b> automatically product naam, price, features padhega</div>
   </div>
 
-  <!-- SCREENSHOT PREVIEW -->
   <div class="ss-preview" id="ssPreview">
     <img id="ssImg" src="" alt="screenshot" />
     <div class="ss-preview-bar">
@@ -206,15 +179,12 @@ input[type=text]::placeholder{color:var(--muted2)}
     </div>
   </div>
 
-  <!-- AMAZON LINK -->
   <div class="link-row">
     <input type="text" id="amzLink" placeholder="Amazon link paste karo (amzn.to ya lamba link)" />
     <button class="link-paste-btn" onclick="pasteLink()">📋 Paste</button>
   </div>
 
-  <!-- CONTROLS -->
   <div class="ctrl-card">
-
     <div class="sect">Caption Language / Tone</div>
     <div class="chips" id="toneChips">
       <div class="chip on" data-v="hinglish">🇮🇳 Hinglish</div>
@@ -243,19 +213,17 @@ input[type=text]::placeholder{color:var(--muted2)}
         <span class="ico">📌</span>Pinterest<br><small>Copy & paste</small>
       </div>
     </div>
-
   </div>
 
   <button class="gen-btn" id="genBtn" onclick="runPipeline()">
     ✨ Screenshot se Post Banao
   </button>
 
-  <!-- PIPELINE STATUS -->
   <div class="pipeline" id="pipeline">
     <div class="pipe-step">
       <div class="pipe-ico">🔍</div>
       <div class="pipe-info">
-        <div class="pipe-label">Screenshot Analysis</div>
+        <div class="pipe-label">Screenshot Analysis (Gemini AI)</div>
         <div class="pipe-detail" id="pd1">AI screenshot padh raha hai...</div>
       </div>
       <div class="pipe-badge pb-wait" id="pb1">Wait</div>
@@ -271,7 +239,7 @@ input[type=text]::placeholder{color:var(--muted2)}
     <div class="pipe-step">
       <div class="pipe-ico">✍️</div>
       <div class="pipe-info">
-        <div class="pipe-label">Caption Write</div>
+        <div class="pipe-label">Caption Write (Gemini AI)</div>
         <div class="pipe-detail" id="pd3">Killer caption likh raha hai...</div>
       </div>
       <div class="pipe-badge pb-wait" id="pb3">Wait</div>
@@ -285,10 +253,7 @@ input[type=text]::placeholder{color:var(--muted2)}
       <div class="pipe-badge pb-wait" id="pb4">Wait</div>
     </div>
 
-    <!-- RESULTS -->
     <div class="result-area">
-
-      <!-- GENERATED IMAGE -->
       <div class="gen-img-card" id="genImgCard">
         <div class="gen-img-header">
           <span class="gen-img-title">🎨 AI Generated Product Image</span>
@@ -303,7 +268,6 @@ input[type=text]::placeholder{color:var(--muted2)}
         </div>
       </div>
 
-      <!-- CAPTION -->
       <div class="caption-card" id="captionCard">
         <div class="caption-header">
           <span class="caption-title">📝 Generated Caption</span>
@@ -312,7 +276,6 @@ input[type=text]::placeholder{color:var(--muted2)}
         <div class="caption-body" id="captionBody"></div>
       </div>
 
-      <!-- PINTEREST -->
       <div class="pin-card" id="pinCard">
         <div class="pin-label">📌 Pinterest Content</div>
         <div class="pin-field" id="pinTitleField"></div>
@@ -323,13 +286,12 @@ input[type=text]::placeholder{color:var(--muted2)}
       <button class="again-btn" onclick="resetAll()">🔄 Naya Product</button>
     </div>
   </div>
-
 </main>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// ── STATE ──
+// STATE
 let cfg = JSON.parse(localStorage.getItem('aaCfg') || '{}');
 let tone = 'hinglish';
 let niche = 'home';
@@ -341,19 +303,17 @@ let captionText = '';
 let currentImgPrompt = '';
 let analyzedProduct = null;
 
-// ── INIT ──
+// INIT
 function init() {
-  if (cfg.botToken && cfg.channelId) {
-    document.getElementById('cfgBtn').textContent = '✅ Connected';
-    document.getElementById('cfgBtn').classList.add('on');
-  }
+  if (cfg.geminiKey) document.getElementById('cfgBtn').textContent = '✅ Connected';
+  if (cfg.geminiKey) document.getElementById('cfgBtn').classList.add('on');
+  if (cfg.geminiKey) document.getElementById('fGeminiKey').value = cfg.geminiKey;
   if (cfg.botToken) document.getElementById('fBotToken').value = cfg.botToken;
   if (cfg.channelId) document.getElementById('fChannelId').value = cfg.channelId;
   if (cfg.affTag) document.getElementById('fAffTag').value = cfg.affTag;
 }
 init();
 
-// ── CHIPS ──
 function initChips(groupId, cb) {
   document.querySelectorAll('#' + groupId + ' .chip').forEach(c => {
     c.addEventListener('click', () => {
@@ -371,27 +331,30 @@ function togglePlat(p) {
   else { pinOn = !pinOn; document.getElementById('pinPlat').classList.toggle('pin', pinOn); }
 }
 
-// ── DRAWER ──
 function openDrawer() { document.getElementById('drawerOverlay').classList.add('open'); }
 function closeDrawer() { document.getElementById('drawerOverlay').classList.remove('open'); }
 function closeDrawerOutside(e) { if (e.target === document.getElementById('drawerOverlay')) closeDrawer(); }
+
 function saveSetup() {
-  const t = document.getElementById('fBotToken').value.trim();
-  const c = document.getElementById('fChannelId').value.trim();
-  if (!t || !c) { showToast('❗ Token aur Channel zaroori hai', true); return; }
-  cfg = { botToken: t, channelId: c, affTag: document.getElementById('fAffTag').value.trim() };
+  const gemini = document.getElementById('fGeminiKey').value.trim();
+  if (!gemini) { showToast('❗ Gemini API key zaroori hai (FREE hai)', true); return; }
+  cfg = { 
+    geminiKey: gemini,
+    botToken: document.getElementById('fBotToken').value.trim(),
+    channelId: document.getElementById('fChannelId').value.trim(),
+    affTag: document.getElementById('fAffTag').value.trim()
+  };
   localStorage.setItem('aaCfg', JSON.stringify(cfg));
   closeDrawer(); init(); showToast('✅ Connected!');
 }
 
-// ── FILE SELECT ──
 function onFileSelect(e) {
   const file = e.target.files[0];
   if (!file) return;
   ssFile = file;
   const reader = new FileReader();
   reader.onload = (ev) => {
-    ssBase64 = ev.target.result.split(',')[1]; // pure base64
+    ssBase64 = ev.target.result.split(',')[1];
     document.getElementById('ssImg').src = ev.target.result;
     document.getElementById('ssPreview').classList.add('show');
     document.getElementById('uploadZone').style.opacity = '0.5';
@@ -399,7 +362,6 @@ function onFileSelect(e) {
   reader.readAsDataURL(file);
 }
 
-// Drag & drop
 const zone = document.getElementById('uploadZone');
 zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag'); });
 zone.addEventListener('dragleave', () => zone.classList.remove('drag'));
@@ -429,7 +391,6 @@ async function pasteLink() {
   } catch { showToast('📋 Manually paste karo'); }
 }
 
-// ── AFFILIATE LINK ──
 function extractASIN(url) {
   const pats = [/\/dp\/([A-Z0-9]{10})/,/\/product\/([A-Z0-9]{10})/,/ASIN=([A-Z0-9]{10})/];
   for (const p of pats) { const m = url.match(p); if (m) return m[1]; }
@@ -442,24 +403,43 @@ function buildAffLink(url, tag) {
   try { const u = new URL(url); u.searchParams.set('tag', tag); return u.toString(); } catch { return url; }
 }
 
-// ── STEP STATUS ──
 function setStep(n, state, detail) {
   const badge = document.getElementById('pb' + n);
   const det = document.getElementById('pd' + n);
   const cls = { wait:'pb-wait', run:'pb-run', ok:'pb-ok', err:'pb-err' };
   const lbl = { wait:'Wait', run:'...', ok:'✓ Done', err:'✗ Error' };
-  badge.className = 'pipe-badge ' + (cls[state] || 'pb-wait');
-  badge.textContent = lbl[state] || state;
-  if (detail) det.textContent = detail;
+  if(badge) badge.className = 'pipe-badge ' + (cls[state] || 'pb-wait');
+  if(badge) badge.textContent = lbl[state] || state;
+  if(detail && det) det.textContent = detail;
 }
 
-// ── STEP 1: ANALYZE SCREENSHOT ──
+// ─── GEMINI API CALLS (FREE) ───
+async function callGemini(prompt, imageBase64 = null, mimeType = 'image/jpeg') {
+  if (!cfg.geminiKey) throw new Error('Gemini API key missing! Setup karo.');
+  
+  const parts = [{ text: prompt }];
+  if (imageBase64) {
+    parts.push({ inline_data: { mime_type: mimeType, data: imageBase64 } });
+  }
+  
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${cfg.geminiKey}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ contents: [{ parts }] })
+  });
+  
+  const data = await res.json();
+  if (data.error) throw new Error(data.error.message);
+  const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  return text;
+}
+
 async function analyzeScreenshot(base64, mimeType) {
   const prompt = `You are an expert at reading Amazon product screenshots. Analyze this screenshot carefully.
 
 Extract ALL visible product information. Be very specific and accurate.
 
-Respond ONLY with raw JSON (no markdown, no backticks):
+Respond ONLY with raw JSON (no markdown, no backticks, just pure JSON):
 {
   "name": "Exact product name as shown",
   "brand": "Brand name",
@@ -469,43 +449,25 @@ Respond ONLY with raw JSON (no markdown, no backticks):
   "rating": "X.X★ (N ratings) if visible",
   "highlights": ["highlight 1", "highlight 2", "highlight 3", "highlight 4"],
   "category": "one of: tech/kitchen/fashion/fitness/beauty/home/other",
-  "imageDescription": "Detailed description of the product appearance for AI image generation: colors, shape, materials, style",
-  "imagePromptSuggestion": "A specific, detailed prompt for generating a professional product photo of this item"
+  "imageDescription": "Detailed description of the product appearance for AI image generation",
+  "imagePromptSuggestion": "A specific, detailed prompt for generating a professional product photo"
 }
 
 If a field is not visible, use empty string "".`;
-
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 700,
-      messages: [{
-        role: 'user',
-        content: [
-          { type: 'image', source: { type: 'base64', media_type: mimeType || 'image/jpeg', data: base64 } },
-          { type: 'text', text: prompt }
-        ]
-      }]
-    })
-  });
-  const data = await res.json();
-  if (data.error) throw new Error(data.error.message);
-  const txt = (data.content || []).map(i => i.text || '').join('');
-  return JSON.parse(txt.replace(/```json|```/g, '').trim());
+  
+  const text = await callGemini(prompt, base64, mimeType);
+  // Clean JSON from markdown if any
+  const cleanJson = text.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+  return JSON.parse(cleanJson);
 }
 
-// ── STEP 2: GENERATE IMAGE (Pollinations.ai - FREE) ──
 function buildImagePrompt(product) {
   const base = product.imagePromptSuggestion || product.imageDescription || product.name;
   return `Professional product photography of ${base}, ${product.brand ? product.brand + ' brand,' : ''} clean white background, studio lighting, high resolution, commercial product photo, sharp focus, Amazon product listing style, 4K quality`;
 }
 
 function generateImageUrl(prompt) {
-  const encoded = encodeURIComponent(prompt);
-  // Pollinations.ai - completely free, no API key needed
-  return `https://image.pollinations.ai/prompt/${encoded}?width=512&height=512&nologo=true&enhance=true&model=flux`;
+  return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=512&height=512&nologo=true&enhance=true&model=flux`;
 }
 
 function loadGenImage(prompt) {
@@ -529,7 +491,6 @@ function onGenImgError() {
 
 function regenImage() {
   if (!currentImgPrompt) return;
-  // Add random seed to force new generation
   const seed = Math.floor(Math.random() * 99999);
   const img = document.getElementById('genImg');
   const loader = document.getElementById('genImgLoader');
@@ -539,26 +500,22 @@ function regenImage() {
   img.src = generateImageUrl(currentImgPrompt) + '&seed=' + seed;
 }
 
-// ── STEP 3: GENERATE CAPTION ──
 async function generateCaption(product, affLink) {
   const toneMap = {
     hinglish: 'Hinglish (mix of Hindi and English, natural Indian style, casual and relatable)',
-    hindi: 'Pure Hindi (Devanagari nahi, Roman Hindi)',
+    hindi: 'Pure Hindi (Roman script, not Devanagari)',
     english: 'Fluent English, professional yet friendly',
     excited: 'Very excited, lots of emojis, desire-creating, enthusiastic',
-    urgent: 'Urgent deal alert, FOMO-creating, scarcity language, "limited time" feel'
+    urgent: 'Urgent deal alert, FOMO-creating, scarcity language'
   };
-
-  const discountStr = product.discount ? `Discount: ${product.discount}` : '';
-  const origPriceStr = product.originalPrice ? `Original price: ${product.originalPrice}` : '';
 
   const prompt = `Write a Telegram affiliate post for this Amazon product.
 
 Product: ${product.name}
 Brand: ${product.brand || 'Unknown'}
 Price: ${product.price || 'Check link'}
-${origPriceStr}
-${discountStr}
+${product.originalPrice ? 'Original price: ' + product.originalPrice : ''}
+${product.discount ? 'Discount: ' + product.discount : ''}
 Rating: ${product.rating || ''}
 Key Highlights: ${(product.highlights || []).join(', ')}
 Tone/Language: ${toneMap[tone] || toneMap.hinglish}
@@ -566,31 +523,19 @@ Niche: ${niche}
 Affiliate Link: ${affLink}
 
 Rules:
-- Use the ACTUAL product name "${product.name}" — never write "Amazon Product"
+- Use the ACTUAL product name "${product.name}" — never write generic "Amazon Product"
 - Include real highlights from the product
 - End with affiliate link naturally
 - 6-8 lines, use \\n for line breaks
-- Emojis should match the tone
 
 Respond ONLY with raw JSON:
 {"telegram":"full post text","pinterestTitle":"max 8 word title","pinterestCaption":"3-4 sentence description","hashtags":"#tag1 #tag2 #tag3 #tag4 #tag5 #AmazonIndia"}`;
 
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 900,
-      messages: [{ role: 'user', content: prompt }]
-    })
-  });
-  const data = await res.json();
-  if (data.error) throw new Error(data.error.message);
-  const txt = (data.content || []).map(i => i.text || '').join('');
-  return JSON.parse(txt.replace(/```json|```/g, '').trim());
+  const text = await callGemini(prompt);
+  const cleanJson = text.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+  return JSON.parse(cleanJson);
 }
 
-// ── STEP 4: TELEGRAM POST ──
 async function postTelegram(text) {
   const r = await fetch(`https://api.telegram.org/bot${cfg.botToken}/sendMessage`, {
     method: 'POST',
@@ -602,28 +547,25 @@ async function postTelegram(text) {
   return d;
 }
 
-// ── MAIN PIPELINE ──
 async function runPipeline() {
   const link = document.getElementById('amzLink').value.trim();
   if (!ssBase64) { showToast('❗ Pehle screenshot upload karo', true); return; }
   if (!link) { showToast('❗ Amazon link bhi chahiye', true); return; }
-  if (!cfg.botToken || !cfg.channelId) { openDrawer(); return; }
-  if (!tgOn && !pinOn) { showToast('❗ Koi platform choose karo', true); return; }
+  if (!cfg.geminiKey) { showToast('❗ Gemini API key missing! Setup karo (FREE)', true); openDrawer(); return; }
+  if ((tgOn && (!cfg.botToken || !cfg.channelId))) { showToast('❗ Telegram setup karo (Bot token + Channel)', true); openDrawer(); return; }
 
   const affLink = buildAffLink(link, cfg.affTag);
   const mimeType = ssFile ? ssFile.type : 'image/jpeg';
 
-  // Setup UI
   document.getElementById('pipeline').classList.add('show');
   document.getElementById('genBtn').disabled = true;
   document.getElementById('genImgCard').classList.remove('show');
   document.getElementById('captionCard').classList.remove('show');
   document.getElementById('pinCard').classList.remove('show');
-  document.getElementById('pipeline').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   ['1','2','3','4'].forEach(n => setStep(n, 'wait', ''));
 
-  // ── STEP 1: Analyze Screenshot ──
-  setStep(1, 'run', 'AI screenshot padh raha hai...');
+  // STEP 1: Analyze Screenshot (Gemini)
+  setStep(1, 'run', 'Gemini AI screenshot padh raha hai...');
   let product;
   try {
     product = await analyzeScreenshot(ssBase64, mimeType);
@@ -636,18 +578,18 @@ async function runPipeline() {
     showToast('⚠️ Screenshot read nahi hua, manual caption banega', true);
   }
 
-  // ── STEP 2: Generate Image ──
+  // STEP 2: Generate Image
   setStep(2, 'run', 'Pollinations.ai se product image ban rahi hai...');
   try {
     const imgPrompt = buildImagePrompt(product);
     loadGenImage(imgPrompt);
-    setStep(2, 'ok', 'Image generate ho rahi hai (background mein)');
+    setStep(2, 'ok', 'Image generate ho rahi hai');
   } catch(e) {
     setStep(2, 'err', 'Image generation failed');
   }
 
-  // ── STEP 3: Generate Caption ──
-  setStep(3, 'run', 'Caption likh raha hai...');
+  // STEP 3: Generate Caption (Gemini)
+  setStep(3, 'run', 'Gemini caption likh raha hai...');
   let content;
   try {
     content = await generateCaption(product, affLink);
@@ -656,23 +598,20 @@ async function runPipeline() {
     document.getElementById('captionBody').textContent = captionText;
     document.getElementById('captionCard').classList.add('show');
   } catch(e) {
-    setStep(3, 'err', 'Caption generation failed');
+    setStep(3, 'err', 'Caption generation failed: ' + (e.message || ''));
     const feats = (product.highlights || []).slice(0,3).map(f => '✅ ' + f).join('\n');
     captionText = `🔥 ${product.name}\n\n${product.price ? '💰 ' + product.price + '\n\n' : ''}${feats ? feats + '\n\n' : ''}🛒 Buy now: ${affLink}\n\n#AmazonIndia`;
     document.getElementById('captionBody').textContent = captionText;
     document.getElementById('captionCard').classList.add('show');
   }
 
-  // Pinterest
   if (pinOn && content) {
     document.getElementById('pinTitleField').textContent = content.pinterestTitle || product.name;
-    document.getElementById('pinCaptionField').textContent =
-      (content.pinterestCaption || '') + '\n\n' + (content.hashtags || '') + '\n\n🔗 ' + affLink;
+    document.getElementById('pinCaptionField').textContent = (content.pinterestCaption || '') + '\n\n' + (content.hashtags || '') + '\n\n🔗 ' + affLink;
     document.getElementById('pinCard').classList.add('show');
   }
 
-  // ── STEP 4: Telegram Post ──
-  if (tgOn) {
+  if (tgOn && captionText) {
     setStep(4, 'run', 'Telegram pe bhej raha hai...');
     try {
       await postTelegram(captionText);
@@ -690,7 +629,7 @@ async function runPipeline() {
 }
 
 function copyCaption() {
-  navigator.clipboard.writeText(captionText).then(() => showToast('✅ Caption copied!'));
+  if(captionText) navigator.clipboard.writeText(captionText).then(() => showToast('✅ Caption copied!'));
 }
 
 function resetAll() {
